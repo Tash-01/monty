@@ -20,9 +20,9 @@ void mul_op(stack_t **stack, unsigned int line_number)
 	}
 	if (s < 2)
 	{
-		printf(stderr, "L%u: can't mul, stack too short\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

@@ -20,18 +20,18 @@ void div_op(stack_t **stack, unsigned int line_number)
 	}
 	if (s < 2)
 	{
-		printf(stderr, "L%u: can't div, stack too short\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't div, stack too short\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	h = *stack;
 	if (p->n == 0)
 	{
-		printf(stderr, "L%u: division by zero\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: division by zero\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

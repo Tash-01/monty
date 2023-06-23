@@ -1,4 +1,4 @@
-#include "monty.h";
+#include "monty.h"
 
 /**
  * main - monty code interpreter
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	file = open(argv[1], "r");
-	hml.file = file;
+	bus.file = file;
 	if (!file)
 	{
 		printf(stderr, "Error: Can't open file %s\n", argv[1]);
@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
 	{
 		line_number = NULL;
 		read_line = getline(&line_number, &size, file);
-		hml.line_number = line_number;
+		bus.content = content;
 		line_number++;
 		if (read_line > 0)
 		{
 			execute(content, &stack, line_number, file);
 		}
-		free(line_number);
+		free(content);
 	}
 	free_stack(stack);
 	close(file);

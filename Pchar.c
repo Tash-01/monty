@@ -14,17 +14,17 @@ void pchar_op(stack_t **stack, unsigned int line_number)
 	p = *stack;
 	if (!p)
 	{
-		printf(stderr, "L%u: can't pchar, stack empty\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	if (p->n 127 || p->n < 0)
 	{
-		printf(stderr, "L%u: can't pchar, value out of range\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

@@ -9,16 +9,14 @@
  */
 int pint_error(stack_t **stack, unsigned int line_number)
 {
-	stack_t *p;
-
 	if (*stack == NULL)
 	{
 
-		printf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*stack)->next;
+	printf("%d\n", (*stack)->n;
 }

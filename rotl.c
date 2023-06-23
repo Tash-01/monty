@@ -9,7 +9,7 @@
  */
 void rotl_op(stack_t **stack, unsigned int line_number)
 {
-	stack_t *stack, *temp;
+	stack_t *emp = *stack, *temp;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -24,5 +24,5 @@ void rotl_op(stack_t **stack, unsigned int line_number)
 	emp->next = *stack;
 	(*stack)->next = NULL;
 	(*stack)->prev = emp;
-	(*stac) = temp;
+	(*stack) = temp;
 }

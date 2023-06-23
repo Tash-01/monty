@@ -2,7 +2,7 @@
 #define MONTY_H
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/type.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
@@ -25,21 +25,21 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct hml_s - variables(args, file, line_number)
+ * struct bus_s - variables(args, file, line_number)
  * @arg: value
  * @file: pointer to monty file
- * @line_number: current working linw number of a Monty bytecode file
- * @shif: flag change stack (queue)
+ * @content: current working linw number of a Monty bytecode file
+ * @lifi: flag change stack (queue)
  * Description: carries value through the code
  */
-typedef struct hml_s
+typedef struct bus_s
 {
 	char *arg;
 	FILE *file;
-	char *line_number;
-	int shif;
-} hml_t;
-extern hml_t hml;
+	char *content;
+	int lifi;
+} bus_t;
+extern bus_t bus;
 
 /**
  * struct instruction_s - opcode and function
@@ -70,5 +70,6 @@ void sub_op(stack_t **stack, unsigned int line_number);
 void swap_error(stack_t **stack, unsigned int line_number);
 void stack_op(stack_t **stack, unsigned int line_number);
 void queue_op(stack_t **stack, unsigned int line_number);
+void aadnode(stack_t **stack, int n);
 
 #endif

@@ -3,15 +3,14 @@
  * execute - execute the opcode
  * @stack: head linked list
  * @line_number: line_number
+ * @content: line content
  * @file: pointer to monty file
  * Return: return 1 on success
  */
-int execute(stack_t **stack, unsigned int line_number, FILE *file)
+int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file)
 {
-	instruction opst[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", pint_error},
+	instruction_t opst[] = {
+		{"push", _push}, {"pall", _pall}, {"pint", pint_error},
 		{"pop", pop_error},
 		{"add", add_error},
 		{"nop", nop_error},
@@ -33,7 +32,7 @@ int execute(stack_t **stack, unsigned int line_number, FILE *file)
 	f = strtok(content, "\n\t");
 	if (ex && ex[0] == '#')
 		return (0);
-	hml.arg = strtok(NULL, "\n\t");
+	bus.arg = strtok(NULL, "\n\t");
 	while (opst[i].opcode && ex)
 	{
 		if (strcmp(ex, opst[i].opcode) == 0)
@@ -44,12 +43,10 @@ int execute(stack_t **stack, unsigned int line_number, FILE *file)
 		i++;
 	}
 	if (ex && opst[i].opcode == NULL)
-	{
-		printf(stderr, "L%u: unknown instruction %s\n", line_number, ex);
+	{ printf(stderr, "L%d: unknown instruction %s\n", line_number, ex);
 		close(file);
-		free(line_number);
+		free(content);
 		free_stack(*stack);
-		exit(EXIT_FAILURE);
-	}
+		exit(EXIT_FAILURE); }
 	return (1);
 }

@@ -10,20 +10,25 @@
  */
 void sub_op(stack_t **stack, unsigned int line_number)
 {
-	stack_t *len;
-	int x, tmp;
+	stack_t *emp;
+	int len, noded;;
 
-	len = *stack;
+	emp = *stack;
 	for (nodes = 0; len != NULL)
 		nodes++;
 
-	len = len->next;
+	emp = emp->next;
 	if (nodes < 2)
 	{
-		printf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
+	emp = *stack;
+	len = emp->next->n - emp->n;
+	emp->next->n = len;
+	*stack = emp->next;
+	free(emp);
 }

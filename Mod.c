@@ -20,13 +20,21 @@ void mod_op(stack_t **stack, unsigned int line_number)
 	}
 	if (s < 2)
 	{
-		printf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't mod, stack too short\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	p = *stack;
+	if (p->n == 0)
+	{
+		printf(stderr, "L%d: division by zero\n", line_number);
+		close(bus.file);
+		free(bus.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
 	len = p->next->n;
 	p->next->n = len;
 	*stack = p->next;

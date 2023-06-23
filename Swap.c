@@ -10,24 +10,24 @@
 void swap_error(stack_t **stack, unsigned int line_number)
 {
 	stack_t *p;
-	int s = 0, len;
+	int len = 0, emp;
 
 	h = *stack;
 	while (p)
 	{
 		p = p->next;
-		s++;
+		len++;
 	}
-	if (s < 2)
+	if (len < 2)
 	{
-		printf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		close(hml.file);
-		free(hml.content);
+		printf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		close(bus.file);
+		free(bus.content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	p = *stack;
-	len = p->n;
+	emp = p->n;
 	p->n = p->next->n;
-	p->next->n = len;
+	p->next->n = emp
 }
